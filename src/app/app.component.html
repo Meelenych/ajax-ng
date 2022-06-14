@@ -1,9 +1,34 @@
-<input type="text" class="form-c ontrol" [(ngModel)]="carName" />
-<button class="btn btn-primary" (click)="loadCars()">Load cars</button>
-<button class="btn btn-success" (click)="addCar()">Add car</button>
-<hr />
-<ul class="list-group">
-  <li class="list-group-item" *ngFor="let car of cars">
-    <span class="badge">{{ car.id }}</span> {{ car.name }} {{ car.color }}
-  </li>
-</ul>
+<div class="container p-4">
+  <input
+    type="text"
+    class="form-control mb-3"
+    [(ngModel)]="carName"
+    placeholder="type car name here"
+  />
+  <button class="btn btn-primary" (click)="loadCars()">Load cars</button>
+  <button class="btn btn-success m-2" (click)="addCar()">Add car</button>
+  <hr />
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let car of cars">
+      <span class="badge" [ngStyle]="{ background: car.color }">{{
+        car.id
+      }}</span>
+      {{ car.name }} ({{ car.color }})
+      <button
+        type="button"
+        class="btn btn-xs btn-info"
+        (click)="setNewColor(car)"
+      >
+        Change color
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-xs btn-danger m-2"
+        (click)="deleteCar(car)"
+      >
+        Delete car
+      </button>
+    </li>
+  </ul>
+</div>

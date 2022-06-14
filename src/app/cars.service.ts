@@ -5,6 +5,8 @@ import 'rxjs'
 import { map } from 'rxjs/operators';
 // import 'rxjs/add/operator/map'
 
+//Запуск сервера json-server --watch db.json
+
 @Injectable()
 
 export class CarsService {
@@ -22,6 +24,16 @@ export class CarsService {
     }
 
     return this.http.post('http://localhost:3000/cars', data).pipe(map(res => (res)));
+  }
+
+  changeColor(car: any, color: string) {
+    // return this.http.put(`http://localhost:3000/cars/${id}`, { color: color }).pipe(map(res => (res))) // или просто { color }
+    car.color = color;
+    return this.http.put(`http://localhost:3000/cars/${car.id}`, car).pipe(map(res => (res)))
+  }
+
+  removeCar(car: any,) {
+    return this.http.delete(`http://localhost:3000/cars/${car.id}`, car).pipe(map(res => (res)))
   }
 }
 
